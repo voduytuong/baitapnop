@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BÀI TẬP NỘP: TÍNH TIỀN CÁP</title>
+  </head>
+  <body>
+    <h1>TÍNH TIỀN CÁP</h1>
+
+    <select id="loaiKH">
+      <option>-- Chọn loại khách hàng --</option>
+      <option value="nhaDan">Nhà dân</option>
+      <option value="doanhNghiep">Doanh nghiệp</option>
+    </select>
+
+    <input id="maKH" type="text" placeholder="Nhập mã khách hàng" />
+    <input id="soKenh" type="number" placeholder="Số kênh cao cấp" />
+
+    <input
+      id="soKetNoi"
+      type="number"
+      placeholder="Số kết nối"
+      class="d-none"
+    />
+
+    <br /><br />
+    <button id="btnTinhTien">Tính Tiền Cáp</button>
+    <div id="pThongBao"></div>
+    <script src="./main_ttc.js"></script>
+  </body>
+</html>
