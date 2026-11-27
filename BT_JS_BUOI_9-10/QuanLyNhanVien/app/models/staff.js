@@ -23,13 +23,15 @@ class Staff {
     this.type = type; // string
   }
 
-  calcTotalSalary(position) {
-    if (position === "Sếp") {
-      this.salary *= 3;
-    } else if (position === "Trưởng phòng") {
-      this.salary *= 2;
-    } else if (position === "Nhân viên") {
-      this.salary *= 1;
+  calcTotalSalary() {
+    if (this.position === "Sếp") {
+      this.totalSalary = this.salary * 3;
+    } else if (this.position === "Trưởng phòng") {
+      this.totalSalary = this.salary * 2;
+    } else if (this.position === "Nhân viên") {
+      this.totalSalary = this.salary * 1;
+    } else {
+      this.totalSalary = 0;
     }
   }
 
