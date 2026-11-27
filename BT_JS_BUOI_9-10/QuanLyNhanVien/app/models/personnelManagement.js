@@ -7,21 +7,30 @@ class PersonnelManagement {
     this.arr.push(staff);
   }
 
-  findEmail(email) {
+  /**
+   * 1. Tạo biến index = -1
+   * 2. Duyệt mảng
+   *  2.1. Lấy staff = arr[i]
+   *  2.2. Nếu account trùng với staff.account
+   *    => true => Cập nhật lại index = i
+   *        => break // dừng vòng lặp
+   * 3. Trả về index
+   */
+  findAccount(account) {
     let index = -1;
     for (let i = 0; i < this.arr.length; i++) {
       const staff = this.arr[i];
-      if (staff.email === email) {
+      if (staff.account === account) {
         index = i;
-        break;
+        break; // dừng vòng lặp
       }
     }
     return index;
   }
 
-  deleteStaff(email) {
-    //* Tìm vị trí email staff cần xóa
-    const index = this.findEmail(email);
+  deleteStaff(account) {
+    //* Tìm vị trí tài khoản staff cần xóa
+    const index = this.findAccount(account);
 
     //* Xóa nhân viên ở vị trí tìm thấy
     if (index !== -1) {
@@ -29,9 +38,17 @@ class PersonnelManagement {
     }
   }
 
+  getStaffByAccount(account) {
+    const index = this.findAccount(account);
+    if (index !== -1) {
+      return this.arr[index];
+    }
+    return null;
+  }
+
   updateStaff(staff) {
-    //* Tìm vị trí email staff cần cập nhật
-    const index = this.findEmail(staff.email);
+    //* Tìm vị trí tài khoản staff cần cập nhật
+    const index = this.findAccount(staff.account);
 
     //* Cập nhật nhân viên
     if (index !== -1) {
@@ -39,11 +56,20 @@ class PersonnelManagement {
     }
   }
 
-  // filterStaff(type) {}
-
+  /**
+   *  1. Tạo mảng mới listTypeStaff = []
+   *  2. Duyệt mảng
+   *    2.1. Lấy staff = this.arr[i]
+   *    2.2. Nếu staff.type có chứa keyword (không phân biệt hoa/thường)
+   *        => true => 2.3. Thêm staff vô listTypeStaff
+   *  3. Trả về listTypeStaff
+   */
   searchTypeStaff(keyword) {
     //* Tạo mảng mới
     let listTypeStaff = [];
+
+    //* Convert keyword => lowercase (bỏ khoảng trắng 2 đầu)
+    const staffKeyLowerCase = keyword.trim().toLowerCase();
 
     //* Duyệt mảng
     for (let i = 0; i < this.arr.length; i++) {
@@ -51,9 +77,6 @@ class PersonnelManagement {
 
       //* Convert staff.type => lowercase
       const staffTypeLowerCase = staff.type.toLowerCase();
-
-      //* Convert staff.type => lowercase
-      const staffKeyLowerCase = keyword.toLowerCase();
 
       if (staffTypeLowerCase.includes(staffKeyLowerCase)) {
         listTypeStaff.push(staff);
